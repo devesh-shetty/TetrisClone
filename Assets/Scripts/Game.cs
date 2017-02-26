@@ -14,6 +14,20 @@ public class Game : MonoBehaviour {
 		SpawnNextTetromino ();
 	}
 
+	public bool CheckIsAboveGrid(Tetromino tetromino){
+		for (int x = 0; x < gridWidth; ++x) {
+			foreach (Transform mino in tetromino.transform) {
+				Vector2 pos = Round (mino.position);
+				if (pos.y > gridHeight - 1) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+
+	}
+
 	public bool isRowFullAt(int y){
 
 		for (int x = 0; x < gridWidth; ++x) {
@@ -154,5 +168,11 @@ public class Game : MonoBehaviour {
 		return randomTetrominoName;
 
 	}
+
+	public void GameOver(){
+
+		Application.LoadLevel ("GameOver");
+	}
+
 
 }
